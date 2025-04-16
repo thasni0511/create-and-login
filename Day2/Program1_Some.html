@@ -1,0 +1,23 @@
+<html>
+<body>
+<p id="l1"></p>
+
+<script>
+  // Array
+  var students = [
+    { name: 'Thasni', grade: 85 },
+    { name: 'Jisha', grade: 45 },
+    { name: 'Primsy', grade: 85 },
+    { name: 'Karthika', grade: 40 }
+  ];
+
+  // checking any student has a grade is geater than 50
+  var passed = students.some(student => student.grade > 50);
+
+  document.getElementById('l1').innerHTML = passed 
+    ? "At least one student has passed the exam!" 
+    : "No student has passed the exam.";
+</script>
+
+</body>
+</html>
