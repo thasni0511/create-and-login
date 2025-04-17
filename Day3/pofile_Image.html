@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      font-family: sans-serif;
+    }
+    form {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    input {
+      display: block;
+      margin-bottom: 10px;
+      width: 90%;
+      padding: 8px;
+    }
+    .member-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f0f0ff;
+  width: 300px;
+  text-align: left;
+}
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a0456f;
+    }
+    #viewSection {
+      display: none;
+      width: 90%;
+    }
+    #viewSection h2 {
+  text-align: center;
+}
+    img.profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    #memberList {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px;            
+}
+  </style>
+</head>
+<body>
+
+  <div id="formSection">
+    <h2>Add Member</h2>
+    <form id="memberForm">
+      Name: <input id="name" required><br>
+      Role: <input id="role" required><br>
+      Skill: <input id="skill" required><br>
+      Profile URL: <input id="profile" required><br>
+      <button type="submit">Add Member</button>
+    </form>
+    <br>
+    <button onclick="showMembers()">View Members</button>
+  </div>
+
+  <div id="viewSection">
+    <h2>Team Members</h2>
+    <div id="memberList"></div>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    var members = [];
+
+    document.getElementById("memberForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var role = document.getElementById("role").value;
+      var skill = document.getElementById("skill").value;
+      var profile = document.getElementById("profile").value; // Now this is the image URL
+
+      members.push({ name, role, skill, profile });
+      console.log("Members List:", members);
+
+      alert("Member Created!");
+      this.reset();
+    });
+
+    function showMembers() {
+      document.getElementById("formSection").style.display = "none";
+      document.getElementById("viewSection").style.display = "block";
+
+      var memberList = document.getElementById("memberList");
+      memberList.innerHTML = "";
+
+      if (members.length === 0) {
+        memberList.innerHTML = "<p>No members added yet.</p>";
+        return;
+      }
+
+      members.forEach(member => {
+        var card = document.createElement("div");
+        card.className = "member-card";
+        card.innerHTML = `
+          <img src="${member.profile}" alt="Profile Picture" class="profile-pic">
+          <h3>${member.name}</h3>
+          <p><strong>Role:</strong> ${member.role}</p>
+          <p><strong>Skill:</strong> ${member.skill}</p>
+        `;
+        memberList.appendChild(card);
+      });
+    }
+
+    function goBack() {
+      document.getElementById("viewSection").style.display = "none";
+      document.getElementById("formSection").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
