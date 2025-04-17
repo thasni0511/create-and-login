@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple user storage in local storage as string using array</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      width: 300px;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px 0;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a0456f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div id="l1" class="box">
+    <h2>Login</h2>
+    <input type="text" id="loginUser" placeholder="Username"><br>
+    <input type="password" id="loginPass" placeholder="Password"><br>
+    <button onclick="checkLogin()">Login</button>
+    <button onclick="showNewUser()">New User</button>
+  </div>
+
+  <!-- New User Page -->
+  <div id="l2" class="box" style="display: none;">
+    <h2>Create New User</h2>
+    <input type="text" id="newUser" placeholder="New Username"><br>
+    <input type="password" id="newPass" placeholder="Password"><br>
+    <input type="password" id="confirmPass" placeholder="Confirm Password"><br> 
+    <button onclick="createUser()">Create New User</button>
+  </div>
+
+  <!-- Welcome Page -->
+  <div id="l3" class="box" style="display: none;">
+    <h2 id="welcomeText">Welcome!</h2>
+    <button onclick="showLogin()">Logout</button>
+  </div>
+
+  <script>
+    function showLogin() {
+      l1.style.display = "block";
+      l2.style.display = "none";
+      l3.style.display = "none";
+      loginUser.value = "";
+      loginPass.value = "";
+    }
+
+    function showNewUser() {
+      l1.style.display = "none";
+      l2.style.display = "block";
+      l3.style.display = "none";
+      // newUser.value = "";
+      // newPass.value = "";
+      // confirmPass.value = "";
+    }
+
+    function showWelcome(name) {
+      l1.style.display = "none";
+      l2.style.display = "none";
+      l3.style.display = "block";
+      welcomeText.innerText = "Welcome, " + name + "!";
+    }
+
+    function createUser() {
+      var username = newUser.value;
+      var password = newPass.value;
+      var confirm = confirmPass.value;
+      console.log(username)
+      console.log(password)
+
+      if (!username || !password || !confirm) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+// let users---varible decln in js
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // users is variable name in js and "users" is key of key-value pair in local storage 
+      // localStorage is designed to only store data as strings so we have to parse it
+      // So if you try to store an array, object, or anything other than a string — 
+      // JavaScript will first convert it to a string before saving it.
+
+      // Check if username already exists
+      var exists = users.some(user => user.username === username);
+      // It checks if any object in users has a username 
+      // that matches the username entered in the form.
+      if (exists) {
+        alert("Username already taken.");
+        return;
+      }
+      // JSON.stringify() is a JavaScript function that takes a JavaScript object or array and converts it into a string.
+      users.push({ username, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("User created. Please login.");
+      showLogin();
+    }
+
+    function checkLogin() {
+      var username = loginUser.value;
+      var password = loginPass.value;
+      var users = JSON.parse(localStorage.getItem("users")) || [];
+
+      var match = users.find(user => user.username === username && user.password === password);
+      // checks array username = login input
+      if (match) {
+        showWelcome(username);
+      } else {
+        alert("Wrong username or password!");
+      }
+    }
+  </script>
+
+</body>
+</html>

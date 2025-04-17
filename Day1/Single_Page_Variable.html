@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Single page login,new user and welcome page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      width: 300px;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px 0;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a0456f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div id="l1" class="box"> <!-- default visible and hide others -->
+    <h2>Login</h2>
+    <input type="text" id="loginUser" placeholder="Username"><br>
+    <input type="password" id="loginPass" placeholder="Password"><br>
+    <button onclick="checkLogin()">Login</button>
+    <button onclick="showNewUser()">New User</button>
+  </div>
+
+  <!-- New User Page -->
+  <div id="l2" class="box" style="display: none;">
+    <h2>Create New User</h2>
+    <input type="text" id="newUser" placeholder="New Username"><br>
+    <input type="password" id="newPass" placeholder="Password"><br>
+    <input type="password" id="confirmPass" placeholder="Confirm Password"><br> 
+    <button onclick="createUser()">Create New User</button>
+  </div>
+
+  <!-- Welcome Page -->
+  <div id="l3" class="box" style="display: none;">
+    <h2>Welcome!</h2>
+    <button onclick="showLogin()">Logout</button>
+  </div>
+
+  <script>
+    function showLogin() {
+      l1.style.display = "block";
+      l2.style.display = "none";
+      l3.style.display = "none";
+      loginUser.value = "";
+      loginPass.value = "";
+    }
+
+    function showNewUser() {
+      l1.style.display = "none";
+      l2.style.display = "block";
+      l3.style.display = "none";
+    }
+
+    function showWelcome() {
+      l1.style.display = "none";
+      l2.style.display = "none";
+      l3.style.display = "block";
+    }
+
+    function createUser() {
+      localStorage.setItem("username", newUser.value);
+      localStorage.setItem("password", newPass.value);
+      alert("User created. Please login.");
+      showLogin();
+    }
+
+    function checkLogin() {
+      if (
+        loginUser.value === localStorage.getItem("username") &&
+        loginPass.value === localStorage.getItem("password")
+      ) {
+        showWelcome();
+      } else {
+        alert("Wrong username or password!");
+      }
+    }
+  </script>
+
+</body>
+</html>
