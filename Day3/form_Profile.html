@@ -1,0 +1,33 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css"> 
+
+</head>
+<body>
+
+  <div id="formSection">
+    <h2>Add Member</h2>
+    <form id="memberForm">
+      Name: <input id="name" required><br>
+      Role: <input id="role" required><br>
+      Skill: <input id="skill" required><br>
+      Profile URL: <input id="profile" required><br>
+      <button type="submit">Add Member</button>
+    </form>
+    <br>
+    <button onclick="showMembers()">View Members</button>
+  </div>
+
+  <div id="viewSection">
+    <h2>Team Members</h2>
+    <div id="memberList"></div>
+    <button onclick="Back()">Back</button>
+  </div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
