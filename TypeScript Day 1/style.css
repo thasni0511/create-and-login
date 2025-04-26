@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f0f8ff;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  #displayData p {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
