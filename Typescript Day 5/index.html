@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Login Form -->
+  <div id="loginForm">
+    <h2>Login</h2>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" required><br><br>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" required><br><br>
+      
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Admin Page (Initially Hidden) -->
+  <div id="adminPage" class="hidden">
+    <h2>Admin Dashboard</h2>
+    <div id="adminInfo"></div>
+    <button id="viewSalary">View Salary</button>
+    <div id="salaryInfo" class="hidden"></div>
+    <button id="logoutBtn1">Logout</button>
+  </div>
+
+  <!-- Employee Page (Initially Hidden) -->
+  <div id="employeePage" class="hidden">
+    <h2>Employee Dashboard</h2>
+    <div id="employeeInfo"></div>
+    <button id="logoutBtn2">Logout</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
