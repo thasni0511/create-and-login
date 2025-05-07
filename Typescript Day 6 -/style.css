@@ -1,0 +1,276 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background-color: #988e8e;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; 
+  transition: box-shadow 0.3s ease;
+}
+
+header.sticky {
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-container h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.cart-button {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.cart-button:hover {
+  background-color: #ac76a3;
+}
+
+.cart-image {
+  width: 50px;  
+  height: 50px; 
+}
+
+.cart-text {
+  margin-top: 0px;
+  font-size: 14px;
+  color: #333;
+  font-weight: normal;
+  text-align: center; 
+  display: block; 
+}
+
+.cart-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Carousel */
+.carousel {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #887e7edd;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-dot.active {
+  background-color: #f9f5f5;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.product {
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 400px; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  object-position: center; 
+}
+
+.add-to-cart-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: auto; 
+  width: 100%;
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838;
+}
+
+.added-message {
+  display: none;
+  color: green;
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+}
+
+.added-message.show {
+  display: block; 
+}
+
+.cart-link {
+  display: block;
+  margin: 20px;
+  font-weight: bold;
+  color: blue;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+h3 {
+  font-size: 24px;
+  color: #333;
+  padding: 10px 10px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin-top: 20px;
+}
+
+.cart-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 80%; 
+  max-width: 300px; 
+  margin-bottom: 10px; 
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.cart-item img {
+  width: 100px; 
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px; 
+}
+
+.cart-item p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+#total-count {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.price {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.dropped-price {
+  font-size: 18px;
+  color: #ff0000; 
+  text-decoration: line-through; 
+  margin-top: 5px;
+}
+
+.offer-price {
+  font-size: 18px;
+  color: #28a745; 
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.dropped-text {
+  font-size: 16px;
+  color: #28a745; 
+  font-weight: bold;
+  margin-top: 5px;
+}
