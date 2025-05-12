@@ -1,0 +1,65 @@
+/* Make full height and center the container */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered login container */
+.login-container {
+  width: 400px;
+  padding: 50px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+  text-align: center;
+}
+
+/* Reusable card style */
+.card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Input styling */
+input {
+  display: block;
+  width: 90%;
+  margin: 5px auto;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Feedback message styling */
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
