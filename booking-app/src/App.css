@@ -1,0 +1,143 @@
+/* Main Container */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #dfe9f3, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card */
+.booking-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Title */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #5f27cd;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.input {
+  width: 90%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Time Slots */
+.time-slot-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.time-slot-button {
+  padding: 10px 15px;
+  border: 1px solid #5f27cd;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #5f27cd;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-slot-button:hover {
+  background-color: #f0e9ff;
+}
+
+.time-slot-button.selected {
+  background-color: #5f27cd;
+  color: #fff;
+}
+
+/* Summary */
+.summary {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.summary-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5f27cd;
+  margin-bottom: 10px;
+}
+
+/* Confirm Button */
+.confirm-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to right, #7f00ff, #e100ff);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.confirm-button:hover {
+  opacity: 0.9;
+}
+/* Loading Spinner inside Button */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-top: 3px solid #5f27cd;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Confirmation Message with fade-out */
+.confirmation-message {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #e0ffe0;
+  border: 1px solid #00b894;
+  color: #2d572c;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 10px;
+  animation: fadeInOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  30% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
