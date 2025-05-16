@@ -1,0 +1,170 @@
+/* Base styling */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1d2b64, #f8cdda);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container holding the card */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  z-index: 1;
+  margin-bottom: 20px; /* space below cards for buttons */
+}
+
+/* Card base */
+.card {
+  perspective: 1500px;
+  width: 320px;
+  height: 220px;
+  cursor: pointer;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  transform: scale(1.05);
+  animation: pulseShadow 1.5s infinite ease-in-out alternate;
+}
+
+/* Shadow pulsing animation on hover */
+@keyframes pulseShadow {
+  0% {
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  }
+  100% {
+    box-shadow: 0 28px 75px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* Inner card (front + back) with flip and shadow */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.8s ease;
+  transform-style: preserve-3d;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Front and back faces of the card */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.6s ease 0.3s;
+  color: white;
+  opacity: 1;
+}
+
+/* Front face style */
+.card-front {
+  background: linear-gradient(to bottom right, #00c6ff, #0072ff);
+}
+
+/* Back face style and flip */
+.card-back {
+  background: linear-gradient(to bottom right, #fc466b, #3f5efb);
+  transform: rotateY(180deg);
+}
+
+/* Fade text on flip */
+.card.flipped .card-front {
+  opacity: 0;
+}
+
+.card.flipped .card-back {
+  opacity: 1;
+}
+
+/* Navigation buttons container */
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px; /* space above buttons */
+  z-index: 10;
+  position: relative;
+}
+
+/* Buttons base style */
+.navigation-buttons button {
+  background-color: #0072ff;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 114, 255, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button hover and active states */
+.navigation-buttons button:not(:disabled):hover {
+  background-color: #005bbb;
+  box-shadow: 0 10px 25px rgba(0, 91, 187, 0.6);
+}
+
+/* Disabled button style */
+.navigation-buttons button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Button focus outline for accessibility */
+.navigation-buttons button:focus-visible {
+  outline: 3px solid #00c6ff;
+  outline-offset: 3px;
+}
+
+/* Arrow icon inside button */
+.navigation-buttons button::after {
+  content: '→';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.3s ease;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+/* Show arrow on hover if button enabled */
+.navigation-buttons button:not(:disabled):hover::after {
+  right: 8px;
+  opacity: 1;
+}
