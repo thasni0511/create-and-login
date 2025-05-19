@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.light {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+header {
+  padding: 20px;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 40px;
+}
+
+.card {
+  background-color: white;
+  color: black;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark .card {
+  background-color: #1e1e1e;
+  color: #e3e3e3;
+}
+
+.movie-list, .favorites-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.movie-list li, .favorites-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.movie-list button {
+  background-color: #845ec2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movie-list button:hover {
+  background-color: #6a4fb3;
+}
+
+.favorites-list button{
+  background-color: #845ec2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+.favorites-list  button:hover {
+  background-color: #6a4fb3;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  font-size: 0.85rem;
+  background-color: #f1f1f1;
+}
+
+.dark footer {
+  background-color: #1a1a1a;
+  color: #aaa;
+}
+
+.muted {
+  color: gray;
+}
