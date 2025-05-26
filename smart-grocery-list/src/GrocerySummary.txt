@@ -1,0 +1,158 @@
+import { useContext } from "react";
+import GroceryContext from "./GroceryContext";
+import { motion } from "framer-motion";
+
+function GrocerySummary() {
+  const { items, setItems } = useContext(GroceryContext);
+
+  const removeItem = (index: number) => {
+    const updated = items.filter((_, i) => i !== index);
+    setItems(updated);
+  };
+
+  // Convert data to CSV format.
+const convertToCSV = () => { // declares a constant function.
+  if (items.length === 0) return "";//checks if the items array is empty,if no data, return an empty string (no CSV content).
+
+  const header = ["Name", "Quantity", "Category", "Unit Price", "Total Price"]; //These become the first line of the CSV file.
+  const rows = items.map(({ name, quantity, category }) => { items.map// loops through each grocery item in the list.
+    const unitPrice = PRICE_LIST[name] || 0;
+    const totalPrice = unitPrice * quantity;
+    return [name, quantity, category || "-", unitPrice, totalPrice].join(",");
+  });
+
+  return [header.join(","), ...rows].join("\n");
+};
+
+  // Escape commas, quotes, and newlines in CSV fields
+  const escapeCSV = (field: string) => {
+    if (field.includes(",") || field.includes('"') || field.includes("\n")) {
+      return `"${field.replace(/"/g, '""')}"`;
+    }
+    return field;
+  };
+
+  // Trigger CSV file download
+  const exportCSV = () => {
+    const csvData = convertToCSV();
+    if (!csvData) return;
+
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "grocery-list.csv");
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <motion.div
+      className="card"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.6 }}
+    >
+      <h2>Grocery List</h2>
+      {items.length === 0 ? (
+        <p>No items yet.</p>
+      ) : (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item, index) => (
+                <motion.tr
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <td>{item.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.category || "-"}</td>
+                  <td>
+                    <button
+                      onClick={() => removeItem(index)}
+                      style={{
+                        background: "none",
+                        color: "#e53e3e",
+                        border: "none",
+                        cursor: "pointer",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+          <button
+            style={{
+              marginTop: "1rem",
+              background:
+                "linear-gradient(to right, #667eea, #764ba2)",
+              color: "white",
+              fontWeight: "600",
+              padding: "0.75rem 1.5rem",
+              borderRadius: "12px",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={exportCSV}
+          >
+            Export to CSV
+          </button>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
+export default GrocerySummary;
+// Convert data to CSV format.
+const convertToCSV = () => { // declares a constant function.
+  if (items.length === 0) return "";//checks if the items array is empty,if no data, return an empty string (no CSV content).
+
+  const header = ["Name", "Quantity", "Category", "Unit Price", "Total Price"]; //These become the first line of the CSV file.
+  const rows = items.map(({ name, quantity, category }) => { //items.map==>loops through each grocery item in the list.
+    const unitPrice = PRICE_LIST[name] || 0;
+    const totalPrice = unitPrice * quantity;
+    return [name, quantity, category || "-", unitPrice, totalPrice].join(",");
+  });
+
+  return [header.join(","), ...rows].join("\n");
+};
+
+  // Trigger CSV file download
+  const exportCSV = () => {
+    const csvData = convertToCSV();
+    if (!csvData) return;
+
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" }); //A Blob (Binary Large Object) is a way to hold file-like raw data in memory.
+   //We create a blob from the CSV string (csvData).
+   //type: "text/csv;charset=utf-8;" tells the browser this is a CSV file with UTF-8 encoding.
+    
+   //This is needed to simulate a downloadable file without needing a server.
+       const url = URL.createObjectURL(blob); //Converts the blob into a temporary object URL
+    const link = document.createElement("a");//Creates a new <a> (anchor) element — like <a href="..." download="...">Download</a>.We’ll trigger this element to simulate a file download.
+    link.href = url; //Assigns the temporary blob URL as the href of the anchor.
+    link.setAttribute("download", "grocery-list.csv");//This tells the browser:When clicked, download this file, and name it grocery-list.csv
+    // document.body.appendChild(link); 
+    link.click();//Programmatically clicks the anchor.
+
+    document.body.removeChild(link);//Removes the anchor tag from the document after clicking.
+    URL.revokeObjectURL(url);//Frees up memory by deleting the blob URL we created.
+  };
